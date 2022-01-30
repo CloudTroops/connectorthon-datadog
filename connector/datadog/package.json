@@ -1,0 +1,10 @@
+{
+  "name": "datadog",
+  "version": "1.0.0",
+  "description": "Connector to integrate with DataDog SaaS provider",
+  "dependencies": {
+    "request": "2.55.0",
+    "@webmethodsio/cli-sdk": "*",
+    "json-stringify-safe": "5.0.1"
+  }
+}
