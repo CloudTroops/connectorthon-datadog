@@ -15,9 +15,10 @@ module.exports = {
         title: "Get a downtime",
         type: "object",
         properties: {
-            "currentOnly": {
-                "title": "currentOnly",
-                "type": "boolean"
+            "downtime_id": {
+                "title": "downtime_id",
+                "type": "integer",
+                "minLength":1
             }
         }
     },
@@ -44,8 +45,7 @@ module.exports = {
         var option = {
             "method": "GET",
             "headers": global_constants.generate_common_header(input),
-            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/downtime",
-            "qs": {current_only: input.currentOnly}
+            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/downtime/"+input.downtime_id,
         }
         request(option, function(error, response, body) {
             if (error) {

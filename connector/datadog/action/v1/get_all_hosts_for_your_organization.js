@@ -35,7 +35,7 @@ module.exports = {
         var option = {
             "method": "GET",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/hosts",
+                        "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/hosts",
 			"qs":{ filter: input.filter,sort_field: input.sort_field,sort_dir: input.sort_dir,start: input.start,count: input.count,from: input.from,include_muted_hosts_data: input.include_muted_hosts_data,include_hosts_metadata: input.include_hosts_metadata }
         }
         request(option, function(error, response, body) {

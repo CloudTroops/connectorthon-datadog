@@ -35,7 +35,7 @@ module.exports = {
         var option = {
             "method": "GET",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/downtime",
+            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/downtime",
 			"qs":{ current_only: input.current_only }
         }
         request(option, function(error, response, body) {

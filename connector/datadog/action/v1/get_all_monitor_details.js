@@ -1,23 +1,19 @@
 module.exports = {
 
-    name: "Mute a host",
+    name: "Get all monitor details",
 
-    title: "Mute a host",
+    title: "Get all monitor details",
 
     version: "v1",
 
     description: ``,
     
     mock_input: 
-		{
-  "end": 1579098130,
-  "message": "Muting this host for a test!",
-  "override": false
-},
+		{},
 	
 
     input: 
-        { title: "Input", type: "object",properties: {"host_name": { "title":"host_name","type": "string","minLength" : 1},"payload": { "title":"payload","type": "object", "properties": {"end": { "title":"end","type": "integer",},"message": { "title":"message","type": "string",},"override": { "title":"override","type": "boolean",},} },} },
+        { title: "Input", type: "object",properties: {"group_states": { "title":"group_states","type": "string",},"name": { "title":"name","type": "string",},"tags": { "title":"tags","type": "string",},"monitor_tags": { "title":"monitor_tags","type": "string",},"with_downtimes": { "title":"with_downtimes","type": "boolean",},"id_offset": { "title":"id_offset","type": "integer",},"page": { "title":"page","type": "integer",},"page_size": { "title":"page_size","type": "integer",},} },
             
 
     output: {
@@ -37,10 +33,10 @@ module.exports = {
         var api_domain = "api";
         var request = require("request");
         var option = {
-            "method": "POST",
+            "method": "GET",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+`/api/v1/host/${input.host_name}/mute`,
-			"qs":{   }
+            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/monitor",
+			"qs":{ group_states: input.group_states,name: input.name,tags: input.tags,monitor_tags: input.monitor_tags,with_downtimes: input.with_downtimes,id_offset: input.id_offset,page: input.page,page_size: input.page_size }
         }
         request(option, function(error, response, body) {
             if (error) {

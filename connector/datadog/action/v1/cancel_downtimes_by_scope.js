@@ -10,12 +10,30 @@ module.exports = {
     
     mock_input: 
 		{
-  "scope": "string"
-},
+        "payload" :{
+            "scope": "env:staging"
+        }
+    },
 	
 
     input: 
-        { title: "Input", type: "object",properties: {"payload": { "title":"payload","type": "object", "properties": {"scope": { "title":"scope","type": "string","minLength" : 1},} },} },
+    {
+        "title": "Input",
+        "type": "object",
+        "properties": {
+            "payload": {
+                "title": "payload",
+                "type": "object",
+                "properties": {
+                    "scope": {
+                        "title": "scope",
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        }
+    },
             
 
     output: {

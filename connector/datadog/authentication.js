@@ -3,7 +3,7 @@ module.exports = {
 	mock_input: {
 		"api_key": "XX",
   		"app_key": "XX",
-  		"site": "XX"
+  		"site": "US3"
 	},
 	input: {
 		type: "object",

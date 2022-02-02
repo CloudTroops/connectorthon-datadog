@@ -16,4 +16,29 @@ module.exports = {
         header['DD-APPLICATION-KEY'] = input.auth.app_key;
         return header;
     },
+    remove_empty: function (object) {
+        Object
+        .entries(object)
+        .forEach(([k, v]) => {
+            console.log("Key: "+k+" value: "+v)
+            if (v && typeof v === 'object')
+                this.remove_empty(v);
+            if (v && 
+                typeof v === 'object' && 
+                !Object.keys(v).length || 
+                v === null || 
+                v === undefined ||
+                v.length === 0
+            ) {
+                if (Array.isArray(object))
+                    object.splice(k, 1);
+                else if (!(v instanceof Date))
+                {
+                    console.log("Deleting Key:  "+k);
+                    delete object[k];
+                }
+            }
+        });
+    return object;
+    }
 }

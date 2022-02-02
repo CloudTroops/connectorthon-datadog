@@ -35,7 +35,7 @@ module.exports = {
         var option = {
             "method": "DELETE",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/downtime/{input.downtime_id}",
+            "url": global_constants.get_uri(input.auth.site,api_domain)+`/api/v1/downtime/${input.downtime_id}`,
 			"qs":{   }
         }
         request(option, function(error, response, body) {

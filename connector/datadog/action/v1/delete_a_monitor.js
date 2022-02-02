@@ -1,23 +1,19 @@
 module.exports = {
 
-    name: "Mute a host",
+    name: "Delete a monitor",
 
-    title: "Mute a host",
+    title: "Delete a monitor",
 
     version: "v1",
 
     description: ``,
     
     mock_input: 
-		{
-  "end": 1579098130,
-  "message": "Muting this host for a test!",
-  "override": false
-},
+		{},
 	
 
     input: 
-        { title: "Input", type: "object",properties: {"host_name": { "title":"host_name","type": "string","minLength" : 1},"payload": { "title":"payload","type": "object", "properties": {"end": { "title":"end","type": "integer",},"message": { "title":"message","type": "string",},"override": { "title":"override","type": "boolean",},} },} },
+        { title: "Input", type: "object",properties: {"monitor_id": { "title":"monitor_id","type": "integer","minLength" : 1},"force": { "title":"force","type": "string",},} },
             
 
     output: {
@@ -37,10 +33,10 @@ module.exports = {
         var api_domain = "api";
         var request = require("request");
         var option = {
-            "method": "POST",
+            "method": "DELETE",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+`/api/v1/host/${input.host_name}/mute`,
-			"qs":{   }
+            "url": global_constants.get_uri(input.auth.site,api_domain)+`/api/v1/monitor/${input.monitor_id}`,
+			"qs":{ force: input.force }
         }
         request(option, function(error, response, body) {
             if (error) {

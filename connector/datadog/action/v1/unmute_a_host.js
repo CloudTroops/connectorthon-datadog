@@ -35,7 +35,7 @@ module.exports = {
         var option = {
             "method": "POST",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/host/{input.host_name}/unmute",
+                        "url": global_constants.get_uri(input.auth.site,api_domain)+`/api/v1/host/${input.host_name}/unmute`,
 			"qs":{   }
         }
         request(option, function(error, response, body) {

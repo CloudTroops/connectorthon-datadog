@@ -15,7 +15,101 @@ module.exports = {
 	
 
     input: 
-        { title: "Input", type: "object",properties: {"downtime_id": { "title":"downtime_id","type": "integer","minLength" : 1},"payload": { "title":"payload","type": "object", "properties": {"disabled": { "title":"disabled","type": "boolean",},"end": { "title":"end","type": "integer",},"message": { "title":"message","type": "string",},"monitor_id": { "title":"monitor_id","type": "integer",},"monitor_tags": { "title":"monitor_tags","type": "array","items" : {    "type": "object",    "properties" : {        "monitor_tags" : {            "title" : "monitor_tags",            "type" : "string",} } } },"parent_id": { "title":"parent_id","type": "integer",},"recurrence": { "title":"recurrence","type": "object", "properties": {"period": { "title":"period","type": "integer",},"rrule": { "title":"rrule","type": "string",},"type": { "title":"type","type": "string",},"until_date": { "title":"until_date","type": "integer",},"until_occurrences": { "title":"until_occurrences","type": "integer",},"week_days": { "title":"week_days","type": "array","items" : {    "type": "object",    "properties" : {        "week_days" : {            "title" : "week_days",            "type" : "string",} } } },} },"scope": { "title":"scope","type": "array","items" : {    "type": "object",    "properties" : {        "scope" : {            "title" : "scope",            "type" : "string",} } } },"start": { "title":"start","type": "integer",},"timezone": { "title":"timezone","type": "string",},} },} },
+    {
+        "title": "Input",
+        "type": "object",
+        "properties": {
+            "downtime_id": {
+                "title": "downtime_id",
+                "type": "integer",
+                "minLength": 1
+            },
+            "payload": {
+                "title": "payload",
+                "type": "object",
+                "properties": {
+                    "disabled": {
+                        "title": "disabled",
+                        "type": "boolean"
+                    },
+                    "end": {
+                        "title": "end",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "message",
+                        "type": "string"
+                    },
+                    "monitor_id": {
+                        "title": "monitor_id",
+                        "type": "integer"
+                    },
+                    "monitor_tags": {
+                        "title": "monitor_tags",
+                        "type": "array",
+                        "items": {
+                            "title": "monitor_tags",
+                            "type": "string"
+                        }
+                    },
+                    "parent_id": {
+                        "title": "parent_id",
+                        "type": "integer"
+                    },
+                    "recurrence": {
+                        "title": "recurrence",
+                        "type": "object",
+                        "properties": {
+                            "period": {
+                                "title": "period",
+                                "type": "integer"
+                            },
+                            "rrule": {
+                                "title": "rrule",
+                                "type": "string"
+                            },
+                            "type": {
+                                "title": "type",
+                                "type": "string"
+                            },
+                            "until_date": {
+                                "title": "until_date",
+                                "type": "integer"
+                            },
+                            "until_occurrences": {
+                                "title": "until_occurrences",
+                                "type": "integer"
+                            },
+                            "week_days": {
+                                "title": "week_days",
+                                "type": "array",
+                                "items": {
+                                    "title": "week_days",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "scope": {
+                        "title": "scope",
+                        "type": "array",
+                        "items": {
+                            "title": "scope",
+                            "type": "string"
+                        }
+                    },
+                    "start": {
+                        "title": "start",
+                        "type": "integer"
+                    },
+                    "timezone": {
+                        "title": "timezone",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
             
 
     output: {
@@ -34,10 +128,11 @@ module.exports = {
         var global_constants = require("../../common/constants");
         var api_domain = "api";
         var request = require("request");
+        input.payload = global_constants.remove_empty(input.payload);
         var option = {
             "method": "PUT",
             "headers": global_constants.generate_common_header(input),
-            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+"/api/v1/downtime/{input.downtime_id}",
+            "json": input.payload,            "url": global_constants.get_uri(input.auth.site,api_domain)+`/api/v1/downtime/${input.downtime_id}`,
 			"qs":{   }
         }
         request(option, function(error, response, body) {
