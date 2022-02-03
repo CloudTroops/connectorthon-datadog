@@ -46,14 +46,9 @@ module.exports = {
                         "title": "messages",
                         "type": "array",
                         "items" : {
-                            "type": "object",
-                            "properties" : {
-                                "message" : {
-                                    "title" : "message",
-                                    "type" : "string",
-                                    "minLength" : 1
-                                }
-                            }
+                            "title" : "message",
+                            "type" : "string",
+                            "minLength" : 1
                         },
                         "minItems" : 1
                     },
